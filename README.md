@@ -12,15 +12,16 @@ Of course this can run basically on any distro and desktop anvironment.
 
 # Usage for Sway (step-by-step for new users)
    1. Download the archive, extract it, open a terminal, navigate to the extracted folder and run:
-        chmod +x dionotify-light
-        mkdir -p ~/.config/sway/icons
-        cp icons/* ~/.config/sway/icons
-        cp dionotify-light ~/.config/sway
+
+          chmod +x dionotify-light
+          mkdir -p ~/.config/sway/icons
+          cp icons/* ~/.config/sway/icons
+          cp dionotify-light ~/.config/sway
 
    2. Put the following lines into your ~/.config/sway/config
    
-        bindsym --locked XF86MonBrightnessUp exec --no-startup-id 'brightnessctl -n s 3+ && ~/.config/sway/dionotify-light'
-        bindsym --locked XF86MonBrightnessDown exec --no-startup-id 'brightnessctl -n s 3- && ~/.config/sway/dionotify-light'
+          bindsym --locked XF86MonBrightnessUp exec --no-startup-id 'brightnessctl -n s 3+ && ~/.config/sway/dionotify-light'
+          bindsym --locked XF86MonBrightnessDown exec --no-startup-id 'brightnessctl -n s 3- && ~/.config/sway/dionotify-light'
           
   Of course you may choose a different key combination or/and location for the script, don't forget to reload the Sway configuration afterwards. 
    
