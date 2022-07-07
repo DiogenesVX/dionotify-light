@@ -26,8 +26,6 @@ Of course this can run basically on any distro and desktop anvironment.
    
    2. Make sure you have the following packages installed:
    
-          grep
           coreutils
-          util-linux
           libnotify-bin
-          pulseaudio-utils
+          brightnessctl
