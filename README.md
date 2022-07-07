@@ -8,7 +8,7 @@ Of course this can run basically on any distro and desktop anvironment.
    1. Get a visual notification bar when changing the brightness level.
 
 # Screenshot
-   ![Alt text](https://github.com/DiogenesVX/dionotify/blob/main/dionotify-light.png)
+   ![Alt text](https://github.com/DiogenesVX/dionotify-light/blob/main/dionotify-light.png)
 
 # Usage for Sway (step-by-step for new users)
    1. Download the archive, extract it, open a terminal, navigate to the extracted folder and run:
