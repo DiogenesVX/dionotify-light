@@ -1,0 +1,112 @@
+#!/bin/bash
+#### dionotify-light
+# A simple utility to get the brightness change notification
+#### Requires: coreutils, brightnessctl, libnotify-bin
+
+# space_char defines a special character U+00A0 NO-BREAK SPACE, reference: https://invisible-characters.com/
+space_char=" "
+# this converts the brightness value into 1..100% percentage (on my system the maximum brightness value is: 187,
+# you can see your maximum brightness level with this command: brightnessctl g)
+brightness_percent=$(( $(brightnessctl g) * 100 / 187 ))
+
+# determine how many white and gray bars to draw
+if [ $brightness_percent == 0 ] || [ $brightness_percent == 1 ]; then
+        whitebars=0
+        graybars=20
+elif [ $brightness_percent -gt 1 ] && [ $brightness_percent -le 5 ]; then
+        whitebars=1
+        graybars=19
+elif
+    [ $brightness_percent -gt 5 ] && [ $brightness_percent -le 10 ]; then
+        whitebars=2
+        graybars=18
+elif
+    [ $brightness_percent -gt 10 ] && [ $brightness_percent -le 15 ]; then
+        whitebars=3
+        graybars=17
+elif
+    [ $brightness_percent -gt 15 ] && [ $brightness_percent -le 20 ]; then
+        whitebars=4
+        graybars=16
+elif
+    [ $brightness_percent -gt 20 ] && [ $brightness_percent -le 25 ]; then
+        whitebars=5
+        graybars=15
+elif
+    [ $brightness_percent -gt 25 ] && [ $brightness_percent -le 30 ]; then
+        whitebars=6
+        graybars=14
+elif
+    [ $brightness_percent -gt 30 ] && [ $brightness_percent -le 35 ]; then
+        whitebars=7
+        graybars=13
+elif
+    [ $brightness_percent -gt 35 ] && [ $brightness_percent -le 40 ]; then
+        whitebars=8
+        graybars=12
+elif
+    [ $brightness_percent -gt 40 ] && [ $brightness_percent -le 45 ]; then
+        whitebars=9
+        graybars=11
+elif
+    [ $brightness_percent -gt 45 ] && [ $brightness_percent -le 50 ]; then
+        whitebars=10
+        graybars=10
+elif
+    [ $brightness_percent -gt 50 ] && [ $brightness_percent -le 55 ]; then
+        whitebars=11
+        graybars=9
+elif
+    [ $brightness_percent -gt 55 ] && [ $brightness_percent -le 60 ]; then
+        whitebars=12
+        graybars=8
+elif
+    [ $brightness_percent -gt 60 ] && [ $brightness_percent -le 65 ]; then
+        whitebars=13
+        graybars=7
+elif
+    [ $brightness_percent -gt 65 ] && [ $brightness_percent -le 70 ]; then
+        whitebars=14
+        graybars=6
+elif
+    [ $brightness_percent -gt 70 ] && [ $brightness_percent -le 75 ]; then
+        whitebars=15
+        graybars=5
+elif
+    [ $brightness_percent -gt 75 ] && [ $brightness_percent -le 80 ]; then
+        whitebars=16
+        graybars=4
+elif
+    [ $brightness_percent -gt 80 ] && [ $brightness_percent -le 85 ]; then
+        whitebars=17
+        graybars=3
+elif
+    [ $brightness_percent -gt 85 ] && [ $brightness_percent -le 90 ]; then
+        whitebars=18
+        graybars=2
+elif
+    [ $brightness_percent -gt 90 ] && [ $brightness_percent -le 95 ]; then
+        whitebars=19
+        graybars=1
+else
+        whitebars=20
+        graybars=0
+fi
+
+# setting the icon according to the brightness percentage, low (1 - 30%), medium (30 - 70%), maximum (70 -100%)
+if [ $brightness_percent -gt 0 ] && [ $brightness_percent -le 30 ]; then
+        brightness_icon="$HOME"/.config/sway/icons/brightness-icon-low.png
+elif
+    [ $brightness_percent -gt 30 ] && [ $brightness_percent -le 70 ]; then
+        brightness_icon="$HOME"/.config/sway/icons/brightness-icon-med.png
+else
+        brightness_icon="$HOME"/.config/sway/icons/brightness-icon-max.png
+fi
+
+# creating the notification
+notify-send \
+ --expire-time=1700 \
+ --icon=$brightness_icon \
+ $(for i in $(seq 1 $whitebars); do printf █; done)$(for i in $(seq 1 $graybars); do printf ▒; done)$space_char$brightness_percent%
+
+exit 0
