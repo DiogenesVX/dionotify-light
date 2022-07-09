@@ -7,7 +7,7 @@
 space_char=" "
 # this converts the brightness value into 1..100% percentage (on my system the maximum brightness value is: 187,
 # you can see your maximum brightness level with this command: brightnessctl g)
-brightness_percent=$(( $(brightnessctl g) * 100 / 187 ))
+brightness_percent=$(( $(brightnessctl g) * 100 / $(brightnessctl m) ))
 
 # determine how many white and gray bars to draw
 if [ $brightness_percent == 0 ] || [ $brightness_percent == 1 ]; then
