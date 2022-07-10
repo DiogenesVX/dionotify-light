@@ -2,7 +2,7 @@
 A simple utility to get the brightness change notification.
 This is a small notification utility which shows a nice notification bar when changing the brightness level.
 I created it for myself to use with Sway on Debian. If someone finds it useful for his/her situation, I'd be happy :).
-Of course this can run basically on any distro and desktop anvironment.
+Of course this can run basically on any distro and desktop environment.
 
 # Features
    1. Get a visual notification bar when changing the brightness level.
